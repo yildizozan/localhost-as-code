@@ -1,0 +1,18 @@
+---
+# Path: roles/common/tasks/debian.yml
+
+# Apt repository update
+- name: update apt
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+# Install debian intel wifi driver
+- name: Install debian intel wifi driver
+  ansible.builtin.apt:
+    name:
+      - intel-wifi-dkms
+      - firmware-iwlwifi
+      - firmware-iwlwifi-dkms
+    state: latest
+    update_cache: true

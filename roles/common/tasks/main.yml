@@ -1,0 +1,34 @@
+---
+- name: set timezone to Europe/Istanbul
+  timezone:
+    name: Europe/Istanbul
+
+- name: update apt
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Install common fundamental packages
+  ansible.builtin.package:
+    name:
+      - software-properties-common
+      - apt-transport-https
+      - httpie
+      - curl
+      - gnupg2
+      - ca-certificates
+      - lsb-release
+      - ubuntu-keyring
+      - dnsutils
+      - jq
+      - unzip
+    state: latest
+    update_cache: true
+
+# - name: Remove useless packages from the cache
+#   ansible.builtin.apt:
+#     autoclean: yes
+#
+# - name: Remove dependencies that are no longer required
+#   ansible.builtin.apt:
+#     autoremove: yes

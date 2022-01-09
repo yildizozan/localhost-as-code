@@ -1,0 +1,13 @@
+- hosts: all
+  roles:
+    - common
+    - cloudflare-warp
+    - dotfiles
+    - vim
+    - kubectl
+    - helm
+    - minikube
+    - docker
+    - docker-compose
+    - vagrant
+    - virtualbox
