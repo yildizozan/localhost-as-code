@@ -1,0 +1,9 @@
+---
+
+- name: Install VIM
+  ansible.builtin.package:
+    name:
+      - vim
+    state: latest
+    update_cache: true
+
