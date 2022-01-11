@@ -1,0 +1,27 @@
+---
+- name: Add an Apt signing key to a specific keyring file
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    keyring: /usr/share/keyrings/docker-archive-keyring.gpg
+
+- name: Download virtualbox deb
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+    filename: docker
+    state: present
+
+- name: Install common fundamental packages
+  ansible.builtin.package:
+    name:
+      - docker-ce={{ docker_version }}*
+      - docker-ce-cli={{ docker_version }}*
+      - containerd.io={{ containerd_version }}*
+    state: present
+    update_cache: true
+
+- name: Add the user '{{ ansible_user }}' with a bash shell, appending the group 'sudo'
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: yes
+    state: present

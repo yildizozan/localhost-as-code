@@ -1,0 +1,5 @@
+---
+
+docker_version: 5:20.10.12
+
+containerd_version: 1.4.13
