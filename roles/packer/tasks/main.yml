@@ -1,0 +1,16 @@
+---
+- name: Add an Apt signing key to a specific keyring file
+  ansible.builtin.apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+
+- name: Download packer deb
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
+    filename: vagrant
+    state: present
+
+- name: Install packer
+  ansible.builtin.package:
+    name: packer
+    state: present
+    update_cache: true
