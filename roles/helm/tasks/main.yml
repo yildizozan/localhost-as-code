@@ -1,0 +1,18 @@
+---
+
+- name: Add an Apt signing key, will not download if present
+  ansible.builtin.apt_key:
+    url: https://baltocdn.com/helm/signing.asc
+    state: present
+
+- name: Add helm deb
+  ansible.builtin.apt_repository:
+    repo: 'deb https://baltocdn.com/helm/stable/debian/ all main'
+    filename: helm
+    state: present
+
+- name: Install helm
+  ansible.builtin.package:
+    name: helm
+    state: present
+    update_cache: true
