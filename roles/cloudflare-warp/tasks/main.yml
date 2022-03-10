@@ -1,0 +1,6 @@
+---
+
+- name: Download virtualbox deb
+  ansible.builtin.apt:
+    deb: https://pkg.cloudflareclient.com/uploads/cloudflare_warp_2022_2_288_1_amd64_8a351e87af.deb
+    state: present
