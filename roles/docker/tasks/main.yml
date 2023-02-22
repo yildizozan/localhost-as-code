@@ -5,18 +5,18 @@
     state: directory
     recurse: yes
     
-- name: Add an Apt signing key to a specific keyring file
+- name: add an apt signing key to a specific keyring file
   ansible.builtin.apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     keyring: /etc/apt/keyrings/docker.gpg
 
-- name: Download virtualbox deb
+- name: add repo
   ansible.builtin.apt_repository:
     repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
     filename: docker
     state: present
 
-- name: Install common fundamental packages
+- name: install docker packages
   ansible.builtin.package:
     name:
       - docker-ce
@@ -27,7 +27,7 @@
     state: present
     update_cache: true
 
-- name: Add the user {{ ansible_user }} with a bash shell, appending the group 'sudo'
+- name: add the user {{ ansible_user }}, appending the group 'docker'
   ansible.builtin.user:
     name: "{{ ansible_user }}"
     groups: docker
