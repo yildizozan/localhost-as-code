@@ -6,12 +6,12 @@
 
 - name: add repo
   ansible.builtin.apt_repository:
-    repo: deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/ms-teams stable main
-    filename: teams
+    repo: deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/code stable main
+    filename: code
     state: present
 
 - name: installion
   ansible.builtin.package:
-    name: teams
+    name: code
     state: present
     update_cache: true
