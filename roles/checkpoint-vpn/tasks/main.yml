@@ -1,2 +1,32 @@
 ---
 # tasks file for checkpoint-vpn
+- name: install pakacges
+  ansible.builtin.apt:
+    name:
+      - xterm
+      - openssl
+      - libnss3-tools
+      - openjdk-11-jdk
+    state: present
+
+- name: ensure dpkg arch amd64
+  ansible.builtin.lineinfile: 
+    dest: /var/lib/dpkg/arch 
+    line: amd64
+    create: yes
+
+- name: ensure dpkg arch i386
+  ansible.builtin.lineinfile: 
+    dest: /var/lib/dpkg/arch 
+    line: i386
+    create: yes
+  register: add_i386
+
+- name: install 32bit dependencies
+  ansible.builtin.apt: 
+    name:
+      - libpam0g:i386
+      - libx11-6:i386
+      - libstdc++6:i386
+      - libstdc++5:i386 
+    update_cache: "{{ add_i386.changed }}"
