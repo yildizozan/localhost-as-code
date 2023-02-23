@@ -22,6 +22,8 @@
       - dnsutils
       - jq
       - unzip
+      - htop
+      - tree
     state: latest
     update_cache: true
 
