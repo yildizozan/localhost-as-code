@@ -1,0 +1,22 @@
+---
+# tasks file for kubectx
+- name: download k9s
+  ansible.builtin.get_url:
+    url: https://github.com/derailed/k9s/releases/download/v{{ k9s_version }}/k9s_Linux_amd64.tar.gz
+    dest: /tmp/k9s_v{{ k9s_version }}_Linux_amd64.tar.gz
+
+- name: ensure k9s tmp directory exists
+  file:
+    path: /tmp/k9s_v{{ k9s_version }}_Linux_amd64
+    state: directory
+
+- name: unarchive k9s
+  ansible.builtin.unarchive:
+    src: /tmp/k9s_v{{ k9s_version }}_Linux_amd64.tar.gz
+    dest: /tmp/k9s_v{{ k9s_version }}_Linux_amd64
+
+- name: copy binary k9s executable
+  ansible.builtin.copy:
+    src: /tmp/k9s_v{{ k9s_version }}_Linux_amd64/k9s
+    dest: /usr/local/bin
+    mode: u=rwx,g=rx,o=rx

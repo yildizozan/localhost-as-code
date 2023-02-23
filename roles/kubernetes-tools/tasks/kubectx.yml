@@ -10,12 +10,34 @@
     url: https://github.com/ahmetb/kubectx/releases/download/v{{ kubectx_version }}/kubens_v{{ kubectx_version }}_linux_x86_64.tar.gz
     dest: /tmp/kubens_v{{ kubectx_version }}_linux_x86_64.tar.gz
 
+- name: ensure kubectx tmp directory exists
+  file:
+    path: /tmp/kubectx_v{{ kubectx_version }}_linux_x86_64
+    state: directory
+
+- name: ensure kubens tmp directory exists
+  file:
+    path: /tmp/kubens_v{{ kubectx_version }}_linux_x86_64
+    state: directory
+
 - name: unarchive kubectx
   ansible.builtin.unarchive:
     src: /tmp/kubectx_v{{ kubectx_version }}_linux_x86_64.tar.gz
-    dest: /usr/local/bin
+    dest: /tmp/kubectx_v{{ kubectx_version }}_linux_x86_64
 
 - name: unarchive kubens
   ansible.builtin.unarchive:
     src: /tmp/kubens_v{{ kubectx_version }}_linux_x86_64.tar.gz
+    dest: /tmp/kubens_v{{ kubectx_version }}_linux_x86_64
+
+- name: copy binary kubectx executable
+  ansible.builtin.copy:
+    src: /tmp/kubectx_v{{ kubectx_version }}_linux_x86_64/kubectx
     dest: /usr/local/bin
+    mode: u=rwx,g=rx,o=rx
+
+- name: copy binary kubens executable
+  ansible.builtin.copy:
+    src: /tmp/kubens_v{{ kubectx_version }}_linux_x86_64/kubens
+    dest: /usr/local/bin
+    mode: u=rwx,g=rx,o=rx
