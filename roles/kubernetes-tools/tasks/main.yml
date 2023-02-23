@@ -15,3 +15,5 @@
     name: kubectl
     state: present
     update_cache: true
+
+- include_tasks: kubectx.yml

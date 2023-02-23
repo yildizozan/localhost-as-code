@@ -1,0 +1,21 @@
+---
+# tasks file for kubectx
+- name: download kubectx
+  ansible.builtin.get_url:
+    url: https://github.com/ahmetb/kubectx/releases/download/v{{ kubectx_version }}/kubectx_v{{ kubectx_version }}_linux_x86_64.tar.gz
+    dest: /tmp/kubectx_v{{ kubectx_version }}_linux_x86_64.tar.gz
+
+- name: download kubens
+  ansible.builtin.get_url:
+    url: https://github.com/ahmetb/kubectx/releases/download/v{{ kubectx_version }}/kubens_v{{ kubectx_version }}_linux_x86_64.tar.gz
+    dest: /tmp/kubens_v{{ kubectx_version }}_linux_x86_64.tar.gz
+
+- name: unarchive kubectx
+  ansible.builtin.unarchive:
+    src: /tmp/kubectx_v{{ kubectx_version }}_linux_x86_64.tar.gz
+    dest: /usr/local/bin
+
+- name: unarchive kubens
+  ansible.builtin.unarchive:
+    src: /tmp/kubens_v{{ kubectx_version }}_linux_x86_64.tar.gz
+    dest: /usr/local/bin

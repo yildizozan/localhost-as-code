@@ -6,9 +6,9 @@
     - cloudflare-warp
     - dotfiles
     - vim
-    - teams
+    #- teams # fuckin!
     - vscode
-    - kubectl
+    - kubernetes-tools
     - helm
     - minikube
     - docker
