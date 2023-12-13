@@ -1,13 +1,14 @@
 ---
 
-- name: Add an Apt signing key, will not download if present
+- name: Add an helm apt signing key
   ansible.builtin.apt_key:
     url: https://baltocdn.com/helm/signing.asc
+    keyring: /usr/share/keyrings/helm.gpg
     state: present
 
 - name: Add helm deb
   ansible.builtin.apt_repository:
-    repo: 'deb https://baltocdn.com/helm/stable/debian/ all main'
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main"
     filename: helm
     state: present
 
