@@ -1,0 +1,16 @@
+- hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - common
+    #- cloudflare-warp
+    - dotfiles
+    - vim
+    #- teams # fuckin!
+    - vscode
+    - kubernetes-tools
+    - helm
+    - minikube
+    - docker
+    - vagrant
+    - virtualbox

@@ -3,14 +3,9 @@
   become: true
   roles:
     - common
-    - cloudflare-warp
-    - dotfiles
     - vim
-    #- teams # fuckin!
     - vscode
-    - kubernetes-tools
     - helm
-    - minikube
+    - checkpoint-vpn
     - docker
-    - vagrant
-    - virtualbox
+    - kubetools

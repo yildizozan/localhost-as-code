@@ -1,4 +1,0 @@
----
-# defaults file for kubectl
-kubectx_version: 0.9.4
-k9s_version: 0.27.3
