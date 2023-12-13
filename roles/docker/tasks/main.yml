@@ -1,4 +1,13 @@
 ---
+- name: Install common fundamental packages
+  ansible.builtin.package:
+    name:
+      - curl
+      - gnupg
+      - ca-certificates
+    state: latest
+    update_cache: true
+
 - name: create keyring directory
   ansible.builtin.file:
     path: /etc/apt/keyrings
