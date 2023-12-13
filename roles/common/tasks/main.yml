@@ -21,6 +21,7 @@
       - ubuntu-keyring
       - dnsutils
       - jq
+      - yq
       - unzip
       - htop
       - tree
